@@ -1,0 +1,85 @@
+#main {
+  position: relative;
+}
+.thread {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 6;
+  pointer-events: none;
+  overflow: visible;
+  mix-blend-mode: multiply;
+}
+.thread-base {
+  fill: none;
+  stroke: rgba(38, 59, 67, 0.22);
+  stroke-width: 1.5;
+  stroke-dasharray: 2 6;
+}
+.thread-line {
+  fill: none;
+  stroke: var(--orange);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+.thread-node line {
+  stroke: var(--orange);
+  stroke-width: 2;
+  stroke-dasharray: 30;
+  stroke-dashoffset: 30;
+  transition: stroke-dashoffset var(--t-slow) var(--ease-out);
+}
+.thread-node circle {
+  fill: var(--cream);
+  stroke: var(--ink);
+  stroke-width: 1.5;
+  transition: fill var(--t-base), stroke var(--t-base), r var(--t-base) var(--ease-spring);
+}
+.thread-node.is-reached line {
+  stroke-dashoffset: 0;
+}
+.thread-node.is-reached circle {
+  fill: var(--orange);
+  stroke: var(--orange);
+  r: 7;
+}
+.thread-tip circle {
+  fill: var(--orange);
+}
+.thread-tip .thread-halo {
+  fill: none;
+  stroke: var(--orange);
+  stroke-width: 1.5;
+  opacity: 0.5;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: thread-halo 2.4s var(--ease-out) infinite;
+}
+@keyframes thread-halo {
+  from {
+    transform: scale(0.5);
+    opacity: 0.7;
+  }
+  to {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+/* Chapter labels light up when the thread arrives */
+.chapter-idx b {
+  display: inline-grid;
+  place-items: center;
+  min-width: 2.2em;
+  padding: 2px 6px;
+  border-radius: var(--r-pill);
+  transition:
+    background-color var(--t-base),
+    color var(--t-base),
+    transform var(--t-slow) var(--ease-spring);
+}
+.chapter-idx.is-reached b {
+  background: var(--orange);
+  color: #1d1006;
+  transform: scale(1.08);
+}

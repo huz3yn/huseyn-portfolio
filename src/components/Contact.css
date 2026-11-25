@@ -1,0 +1,153 @@
+.contact {
+  border-top: 1.5px solid var(--ink);
+  overflow: clip;
+}
+.contact-chapter {
+  margin-bottom: var(--s-6);
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--s-6);
+  row-gap: var(--s-12);
+  align-items: end;
+}
+.contact-title {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  position: relative;
+  z-index: 1;
+  font-size: clamp(3rem, 0.6rem + 9.4vw, 11.5rem);
+  font-weight: 820;
+  line-height: 0.84;
+  letter-spacing: -0.02em;
+  font-stretch: 76%;
+  user-select: none;
+}
+.contact-line {
+  display: block;
+  white-space: nowrap;
+}
+.contact-line .kt {
+  font-stretch: 76%;
+  animation: none;
+}
+.contact-line.line-1 {
+  padding-left: 1.2em;
+}
+.contact-line.line-2 {
+  color: var(--orange);
+}
+
+.needles {
+  grid-column: 9 / span 4;
+  grid-row: 1;
+  align-self: center;
+  width: 100%;
+}
+.needles g {
+  transition: transform 0.5s var(--ease-out);
+}
+.needles line {
+  stroke: var(--ink);
+  stroke-width: 2;
+  stroke-linecap: round;
+  opacity: 0.35;
+  transition: opacity var(--t-base), stroke var(--t-base);
+}
+.needles circle {
+  fill: var(--ink);
+  opacity: 0.35;
+  transition: opacity var(--t-base), fill var(--t-base);
+}
+.needles g.is-near line {
+  stroke: var(--orange);
+  opacity: 1;
+}
+.needles g.is-near circle {
+  fill: var(--orange);
+  opacity: 1;
+}
+
+.contact-panel {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--s-6);
+  row-gap: var(--s-8);
+  padding-top: var(--s-8);
+  border-top: 1.5px solid var(--ink);
+}
+.contact-mail {
+  grid-column: 1 / span 7;
+  display: grid;
+  gap: var(--s-4);
+  justify-items: start;
+}
+.contact-copy {
+  display: grid;
+  gap: 4px;
+  text-align: left;
+  padding: var(--s-3) var(--s-4);
+  margin-left: calc(var(--s-4) * -1);
+  border-radius: var(--r-m);
+  transition: background-color var(--t-base), transform var(--t-fast);
+}
+.contact-copy:hover {
+  background: var(--butter);
+}
+.contact-copy:active {
+  transform: scale(0.98);
+}
+.contact-copy-addr {
+  font-size: clamp(1.4rem, 0.6rem + 3vw, 3.25rem);
+  font-weight: 700;
+  font-stretch: 82%;
+  line-height: 1.1;
+  word-break: break-all;
+}
+.contact-copy-hint {
+  font-size: var(--fs-small);
+  color: var(--orange-text);
+  font-weight: 600;
+}
+.contact-facts {
+  grid-column: 9 / span 4;
+  display: grid;
+  gap: var(--s-4);
+  align-content: start;
+}
+.contact-facts div {
+  display: grid;
+  gap: 2px;
+}
+.contact-tel {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  font-weight: 600;
+}
+
+@media (max-width: 1023px) {
+  .needles {
+    display: none;
+  }
+  .contact-mail,
+  .contact-facts {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 640px) {
+  .contact-title {
+    font-size: clamp(2.2rem, 11.5vw, 4rem);
+  }
+  .contact-line.line-1 {
+    padding-left: 0;
+  }
+  .contact-tel {
+    min-height: 44px;
+  }
+  .contact-mail .btn {
+    width: 100%;
+  }
+}

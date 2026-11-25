@@ -1,0 +1,411 @@
+.lab {
+  background: var(--orange);
+  color: #1d1006;
+  border-top: 1.5px solid var(--ink);
+  padding-block: clamp(4rem, 3rem + 4vw, 7rem);
+  overflow: hidden;
+}
+.lab-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--s-6);
+  row-gap: var(--s-8);
+  align-items: start;
+}
+.lab-side {
+  grid-column: 1 / span 3;
+  display: grid;
+  gap: var(--s-4);
+}
+.lab .lab-label {
+  color: #1d1006;
+}
+.lab-title {
+  font-size: clamp(2.5rem, 1.5rem + 3vw, 4.5rem);
+  font-weight: 820;
+  font-stretch: 70%;
+  line-height: 0.88;
+}
+.lab-intro {
+  font-size: var(--fs-small);
+  max-width: 34ch;
+}
+.lab-tabs {
+  display: grid;
+  gap: 4px;
+  margin-top: var(--s-2);
+  justify-items: start;
+}
+.lab-tabs button {
+  position: relative;
+  min-height: 44px;
+  padding: 0 var(--s-4);
+  border-radius: var(--r-pill);
+  font-weight: 700;
+  font-size: var(--fs-body);
+  transition: color var(--t-base), background-color var(--t-base);
+}
+.lab-tabs button span:last-child {
+  position: relative;
+}
+.lab-tabs button[aria-selected='true'] {
+  color: var(--paper);
+}
+.lab-tabs button:not([aria-selected='true']):hover {
+  background: rgba(29, 16, 6, 0.1);
+}
+.lab-tab-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--r-pill);
+  background: var(--ink);
+}
+
+.lab-panel {
+  grid-column: 4 / span 9;
+  min-width: 0;
+}
+
+/* Shared controls */
+.lab-controls {
+  display: grid;
+  gap: var(--s-4);
+  align-content: start;
+}
+.lab-field {
+  display: grid;
+  gap: 4px;
+  font-size: var(--fs-small);
+  font-weight: 600;
+}
+.lab-field b {
+  font-variant-numeric: tabular-nums;
+}
+.lab-field input[type='range'] {
+  width: 100%;
+  height: 24px;
+  accent-color: var(--ink);
+}
+.lab-input {
+  min-height: 44px;
+  padding: 0 var(--s-3);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--r-s);
+  background: var(--paper);
+  font-size: var(--fs-body);
+}
+.lab-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  align-items: center;
+}
+.lab-seg {
+  display: inline-flex;
+  border: 1.5px solid var(--ink);
+  border-radius: var(--r-pill);
+  overflow: hidden;
+}
+.lab-seg button {
+  min-width: 48px;
+  min-height: 40px;
+  font-weight: 700;
+  transition: background-color var(--t-base), color var(--t-base);
+}
+.lab-seg button + button {
+  border-left: 1.5px solid var(--ink);
+}
+.lab-seg button:hover {
+  background: rgba(38, 59, 67, 0.12);
+}
+.lab-seg button[aria-pressed='true'] {
+  background: var(--ink);
+  color: var(--paper);
+}
+.lab-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-height: 44px;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  cursor: pointer;
+}
+.lab-switch input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+.lab-switch > span {
+  position: relative;
+  width: 40px;
+  height: 22px;
+  border-radius: var(--r-pill);
+  border: 1.5px solid var(--ink);
+  background: var(--paper);
+}
+.lab-switch > span span {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--ink);
+  transition: transform var(--t-base) var(--ease-spring);
+}
+.lab-switch input:checked + span {
+  background: var(--butter);
+}
+.lab-switch input:checked + span span {
+  transform: translateX(18px);
+}
+.lab-switch input:focus-visible + span {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+.lab .btn:hover {
+  box-shadow: 4px 4px 0 var(--paper);
+}
+.lab .btn-line {
+  border-color: var(--ink);
+}
+.lab :focus-visible {
+  outline-color: var(--ink);
+}
+
+/* ── Motion curve ── */
+.ease {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+  gap: var(--s-8);
+  align-items: start;
+}
+.ease-graph {
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--r-l);
+  box-shadow: var(--sh-hold);
+  padding: var(--s-2);
+}
+.ease-svg {
+  width: 100%;
+  touch-action: none;
+  overflow: visible;
+}
+.ease-box {
+  fill: none;
+  stroke: var(--line-strong);
+  stroke-dasharray: 3 4;
+}
+.ease-diag {
+  stroke: var(--line);
+  stroke-width: 1.5;
+}
+.ease-arm {
+  stroke: var(--ink);
+  stroke-width: 1.5;
+}
+.ease-curve {
+  fill: none;
+  stroke: var(--orange);
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+.ease-axis {
+  font-family: var(--font);
+  font-size: 11px;
+  fill: var(--muted);
+}
+.ease-handle {
+  cursor: grab;
+  outline: none;
+}
+.ease-handle circle:last-child {
+  fill: var(--ink);
+  stroke: var(--paper);
+  stroke-width: 2.5;
+  transition: r var(--t-base) var(--ease-spring), fill var(--t-base);
+}
+.ease-hit {
+  fill: transparent;
+}
+.ease-handle:hover circle:last-child,
+.ease-handle.is-drag circle:last-child {
+  r: 11;
+  fill: var(--orange);
+}
+.ease-handle:focus-visible .ease-hit {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+.ease-handle.is-drag {
+  cursor: grabbing;
+}
+
+.ease-side {
+  display: grid;
+  gap: var(--s-4);
+}
+.ease-track {
+  position: relative;
+  height: 84px;
+  padding: 8px;
+  border-radius: var(--r-pill);
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  background-image: radial-gradient(circle, rgba(38, 59, 67, 0.18) 1.2px, transparent 1.6px);
+  background-size: 16px 16px;
+}
+.ease-obj {
+  width: 64px;
+  height: 64px;
+  will-change: transform;
+}
+.ease-obj .shape {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+  stroke: var(--ink);
+  stroke-width: 1.5;
+}
+.ease-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+.ease-presets button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
+  padding: 0 var(--s-3) 0 6px;
+  border-radius: var(--r-pill);
+  border: 1.5px solid var(--ink);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  transition: background-color var(--t-base), color var(--t-base), transform var(--t-fast) var(--ease-out);
+}
+.ease-presets button:hover {
+  background: rgba(255, 252, 246, 0.5);
+}
+.ease-presets button:active {
+  transform: scale(0.95);
+}
+.ease-presets button[aria-pressed='true'] {
+  background: var(--ink);
+  color: var(--paper);
+}
+.ease-presets svg {
+  width: 28px;
+  height: 28px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+}
+.ease-swatches {
+  display: inline-flex;
+  gap: 6px;
+}
+.ease-swatches button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  transition: transform var(--t-base) var(--ease-spring), box-shadow var(--t-base);
+}
+.ease-swatches button:hover {
+  transform: scale(1.1);
+}
+.ease-swatches button[aria-pressed='true'] {
+  box-shadow: 0 0 0 3px var(--orange), 0 0 0 5px var(--ink);
+}
+.ease-shape-btn .shape {
+  width: 18px;
+  height: 18px;
+  margin: auto;
+  fill: currentColor;
+}
+.ease-code {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  min-height: 48px;
+  padding: 0 var(--s-4);
+  border-radius: var(--r-s);
+  background: rgba(29, 16, 6, 0.12);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  transition: background-color var(--t-base);
+}
+.ease-code span {
+  font-size: var(--fs-tiny);
+  padding: 2px 8px;
+  border-radius: var(--r-pill);
+  background: var(--ink);
+  color: var(--paper);
+}
+.ease-code:hover {
+  background: rgba(29, 16, 6, 0.2);
+}
+
+/* ── Variable type ── */
+.typelab {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr);
+  gap: var(--s-8);
+  align-items: center;
+}
+.lab-stage {
+  display: grid;
+  gap: var(--s-4);
+  min-width: 0;
+}
+.lab-specimen {
+  font-size: clamp(3.5rem, 1rem + 8vw, 10rem);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+  min-height: 1.8em;
+  display: flex;
+  align-items: center;
+}
+.lab-specimen.is-outline {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--ink);
+}
+.lab-code {
+  font-family: inherit;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  padding: var(--s-2) var(--s-3);
+  border-radius: var(--r-s);
+  background: rgba(29, 16, 6, 0.1);
+  justify-self: start;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 1100px) {
+  .lab-side,
+  .lab-panel {
+    grid-column: 1 / -1;
+  }
+  .lab-tabs {
+    grid-auto-flow: column;
+    justify-content: start;
+  }
+}
+@media (max-width: 760px) {
+  .ease,
+  .typelab {
+    grid-template-columns: 1fr;
+  }
+  .ease-code {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

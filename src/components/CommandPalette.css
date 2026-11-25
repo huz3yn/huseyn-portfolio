@@ -1,0 +1,106 @@
+.pal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: rgba(38, 59, 67, 0.28);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 14vh var(--gutter) var(--gutter);
+}
+.pal {
+  width: min(600px, 100%);
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--r-m);
+  box-shadow: 8px 8px 0 var(--ink);
+  overflow: hidden;
+}
+.pal-search:focus-within {
+  box-shadow: inset 0 -2px 0 var(--orange);
+}
+.pal-search {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: 0 var(--s-4);
+  border-bottom: 1px solid var(--line);
+}
+.pal-prompt {
+  color: var(--orange-text);
+  font-weight: 700;
+}
+.pal-search input {
+  flex: 1;
+  min-width: 0;
+  height: 56px;
+  border: 0;
+  background: none;
+  font-size: var(--fs-body);
+  outline: none;
+}
+.pal-search input::placeholder {
+  color: var(--muted);
+}
+.pal-list {
+  overscroll-behavior: contain;
+  max-height: min(52vh, 420px);
+  overflow-y: auto;
+  padding: var(--s-2);
+}
+.pal-group {
+  padding: var(--s-3) var(--s-3) var(--s-1);
+}
+.pal-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s-4);
+  min-height: 44px;
+  padding: 0 var(--s-3);
+  border-radius: var(--r-s);
+  font-size: var(--fs-small);
+  cursor: pointer;
+}
+.pal-item[aria-selected='true'] {
+  background: var(--ink);
+  color: var(--paper);
+}
+.pal-hint {
+  font-size: var(--fs-label);
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pal-item[aria-selected='true'] .pal-hint {
+  color: var(--peach);
+}
+.pal-empty {
+  padding: var(--s-6) var(--s-3);
+  font-size: var(--fs-small);
+  color: var(--muted);
+}
+.pal-foot {
+  display: flex;
+  gap: var(--s-4);
+  align-items: center;
+  padding: var(--s-3) var(--s-4);
+  border-top: 1px solid var(--line);
+  font-size: var(--fs-label);
+  color: var(--muted);
+}
+.pal-foot span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.pal-secret {
+  margin-left: auto;
+  font-style: italic;
+}
+@media (max-width: 560px) {
+  .pal-secret {
+    display: none;
+  }
+}

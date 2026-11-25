@@ -1,0 +1,76 @@
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 300;
+  pointer-events: none;
+  will-change: transform;
+  transition: opacity var(--t-base);
+}
+.cursor-dot:not([data-shown='1']),
+.cursor-ring:not([data-shown='1']) {
+  opacity: 0;
+}
+.cursor-dot::before {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 50%;
+  background: var(--orange);
+  box-shadow: 0 0 0 1.5px var(--paper);
+  transition:
+    transform var(--t-base) var(--ease-out),
+    opacity var(--t-fast);
+}
+.cursor-dot.mode-link::before {
+  transform: scale(0);
+}
+.cursor-dot.mode-label::before {
+  opacity: 0;
+}
+
+.cursor-ring-inner {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(38, 59, 67, 0.5);
+  display: grid;
+  place-items: center;
+  transition:
+    transform var(--t-base) var(--ease-out),
+    background-color var(--t-base) var(--ease-out),
+    border-color var(--t-base) var(--ease-out);
+}
+.cursor-ring.mode-link .cursor-ring-inner {
+  transform: scale(1.55);
+  border-color: var(--orange);
+  background: rgba(255, 107, 53, 0.14);
+}
+.cursor-ring.mode-label .cursor-ring-inner {
+  transform: scale(2.6);
+  border-color: transparent;
+  background: var(--orange);
+}
+.cursor-ring.is-pressed .cursor-ring-inner {
+  transform: scale(0.8);
+}
+.cursor-ring.mode-label.is-pressed .cursor-ring-inner {
+  transform: scale(2.3);
+}
+.cursor-label {
+  font-size: 5px;
+  font-weight: 700;
+  font-stretch: 115%;
+  letter-spacing: 0.12em;
+  color: #1d1006;
+  opacity: 0;
+  transition: opacity var(--t-fast);
+}
+.cursor-ring.mode-label .cursor-label {
+  opacity: 1;
+}

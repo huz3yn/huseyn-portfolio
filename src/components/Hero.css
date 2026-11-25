@@ -1,0 +1,221 @@
+.hero {
+  --line-h: calc(var(--fs-display) * 0.8);
+  position: relative;
+  overflow-x: clip;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows: var(--line-h) 1fr var(--line-h);
+  column-gap: var(--s-6);
+  row-gap: var(--s-6);
+  min-height: 100svh;
+  padding-top: calc(var(--bar-h) + var(--s-6));
+  padding-bottom: var(--s-8);
+}
+
+/* The name spans the whole grid: first line on top, last line at the bottom */
+.hero-name {
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: var(--fs-display);
+  font-weight: 820;
+  line-height: 0.8;
+  letter-spacing: -0.015em;
+  pointer-events: none;
+  user-select: none;
+}
+.hero-first,
+.hero-last {
+  display: block;
+  white-space: nowrap;
+  margin-left: -0.05em;
+  overflow-y: clip;
+  overflow-x: visible;
+  padding-top: 0.06em;
+}
+.hero-last {
+  color: var(--ink);
+}
+.hero.is-settled .hero-first,
+.hero.is-settled .hero-last {
+  overflow: visible;
+}
+.hero-first .kt:first-child {
+  color: var(--orange);
+}
+.hero-name .kt {
+  pointer-events: auto;
+  cursor: grab;
+  touch-action: pan-y;
+  will-change: transform;
+}
+.hero-name .kt.is-held {
+  cursor: grabbing;
+  color: var(--orange);
+}
+.hero-name.is-plucking {
+  user-select: none;
+}
+.hero-hint {
+  grid-column: 1 / span 5;
+  grid-row: 2;
+  align-self: start;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-2);
+  padding-left: clamp(8rem, 18vw, 20rem);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--orange-text);
+  position: relative;
+  z-index: 1;
+  animation: fade-in 0.8s var(--ease-out) 2.2s backwards;
+  transition: opacity var(--t-slow), transform var(--t-slow) var(--ease-out);
+}
+.hero-hint.is-done {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+.hero-hint-arrow {
+  width: 54px;
+  flex-shrink: 0;
+  margin-top: -14px;
+  fill: none;
+  stroke: var(--orange);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.kt {
+  display: inline-block;
+  font-stretch: 74%;
+  animation: kt-rise 1.1s var(--ease-out) backwards;
+  animation-delay: calc(var(--i) * 34ms + 80ms);
+}
+@keyframes kt-rise {
+  from {
+    transform: translateY(105%);
+    font-stretch: 125%;
+  }
+}
+
+.hero-side {
+  grid-column: 1 / span 5;
+  grid-row: 2;
+  align-self: end;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  position: relative;
+  z-index: 1;
+  animation: fade-in 0.8s var(--ease-out) 0.6s backwards;
+}
+.hero-role {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  font-size: clamp(1.25rem, 0.9rem + 1vw, 1.75rem);
+  font-weight: 700;
+  font-stretch: 82%;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+.hero-role-mark {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--orange);
+  box-shadow: 6px 0 0 -2px var(--butter);
+}
+.hero-statement {
+  max-width: 42ch;
+  color: var(--ink-2);
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  margin-top: var(--s-2);
+}
+
+.hero-stage {
+  grid-column: 6 / -1;
+  grid-row: 1 / span 2;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  animation: stage-in 0.9s var(--ease-out) 0.35s backwards;
+}
+@keyframes stage-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+/* Read mode: no playground, a clear profile summary */
+.hero-read .hero-side {
+  grid-column: 1 / span 7;
+}
+.hero-facts {
+  display: grid;
+  gap: var(--s-3);
+  margin-top: var(--s-2);
+}
+.hero-facts div {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: var(--s-4);
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--line);
+  font-size: var(--fs-small);
+}
+
+@media (max-width: 1023px) {
+  .hero-grid {
+    grid-template-rows: none;
+    min-height: 0;
+    row-gap: var(--s-8);
+  }
+  .hero-name,
+  .hero-side,
+  .hero-stage,
+  .hero-read .hero-side {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+  .hero-name {
+    display: block;
+  }
+  .hero-hint {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    padding-left: 0;
+    margin-top: calc(var(--s-6) * -1);
+  }
+  .hero-stage {
+    min-height: 0;
+  }
+}
+@media (max-width: 640px) {
+  .hero {
+    --fs-display: clamp(2.6rem, 14.5vw, 5rem);
+  }
+  .hero-actions .btn {
+    flex: 1 1 100%;
+  }
+  .hero-facts div {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+}
